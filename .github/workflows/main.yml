@@ -25,5 +25,4 @@ jobs:
 #    uses: ./.github/workflows/build-checker.yml
 
   image-builder:
-    needs: build-check
     uses: ./.github/workflows/image-builder.yml
