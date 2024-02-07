@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   application:
-    image: "ghcr.io/robatipoor/rustfulapi:latest"
+    image: "ghcr.io/13dev/madeirareport-api:latest"
     container_name: application
     networks:
       - server-side
