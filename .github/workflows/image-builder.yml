@@ -46,7 +46,6 @@ jobs:
           source: docker/prod/*
           target: '~'
           host: ${{ secrets.DROPLET_HOST }}
-          port: 22
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_PRIVATE_KEY }}
 
