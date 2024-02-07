@@ -48,7 +48,7 @@ jobs:
           target: "~"
           host: "api.madeirareport.pt"
           username: "root"
-          key: "-----BEGIN OPENSSH PRIVATE KEY-----
+          key: '-----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAYEAmQCbFXbKkf6SoqBVRw7rwZ3t4mySWSLkXIaMae5T38oXWtzr1gOh
 wC5yI+WEys7QO1lbKMNeJpkATJ8/qMq1sXfoO8anH8SNNJeVaAUOeQ7pDacp310NaWRzFG
@@ -86,7 +86,7 @@ qVzQNJsCtNJRjvbIl93bPiNau4Mo8Awxr0lfbMHzSmRC9hxL3cjZt3AUVVeUuEcg2CntPO
 ChI2KWJSUP7lyQJxObCvZnnysBl6aIxMufa4HUINHCqZVUnT+M/SEP2IQYs+11qHg6CE0p
 q7twIjvdTRDVUAAAAlbGVvLW9saXZlaXJhQE1hY0Jvb2stUHJvLWRlLUxlby5sb2NhbAEC
 AwQFBg==
------END OPENSSH PRIVATE KEY-----"
+-----END OPENSSH PRIVATE KEY-----'
 
       - name: Deploy
         uses: appleboy/ssh-action@master
