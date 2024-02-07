@@ -41,7 +41,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
       - name: Copy docker/prod to droplet
-        run: scp -o StrictHostKeyChecking=no docker/prod ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_HOST }}:~
+        run: scp -o StrictHostKeyChecking=no -i ${{ secrets.DROPLET_PRIVATE_KEY }} docker/prod ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_HOST }}:~
 
       - name: Deploy
         uses: appleboy/ssh-action@master
