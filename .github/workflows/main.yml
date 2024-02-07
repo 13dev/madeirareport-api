@@ -12,7 +12,7 @@ jobs:
     uses: ./.github/workflows/code-linter.yml
 
   code-formater:
-    uses: ./.github/workflows/code-formatter.yml
+    uses: ./.github/workflows/code-formater.yml
 
   test:
     uses: ./.github/workflows/test.yml
