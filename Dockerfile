@@ -25,7 +25,7 @@ COPY settings settings
 COPY --from=builder /workspace/target/release/app .
 
 # expose port
-EXPOSE 8080
+EXPOSE 8081
 
 ENV APP_PROFILE prod
 
