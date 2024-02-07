@@ -43,6 +43,8 @@ jobs:
 
       - name: Copy docker/prod to droplet
         uses: appleboy/scp-action@master
+        env:
+          key: ${{ secrets.DROPLET_PRIVATE_KEY }}
         with:
           source: docker/prod/*
           target: '~'
