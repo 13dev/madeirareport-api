@@ -40,54 +40,12 @@ jobs:
 #      - name: Image digest
 #        run: echo ${{ steps.docker_build.outputs.digest }}
 
-
-      - name: Copy docker/prod to droplet
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          source: "docker/prod/*"
-          target: "~"
-          host: "164.92.220.100"
-          username: "root"
-          key: '-----BEGIN OPENSSH PRIVATE KEY-----
-b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
-NhAAAAAwEAAQAAAYEAmQCbFXbKkf6SoqBVRw7rwZ3t4mySWSLkXIaMae5T38oXWtzr1gOh
-wC5yI+WEys7QO1lbKMNeJpkATJ8/qMq1sXfoO8anH8SNNJeVaAUOeQ7pDacp310NaWRzFG
-EBrZfOw0c/pbigHNJWP8cHyPCbi/Qu3XT6mDNCkgmSMBlFflcl5pNWSf5c+7pt+dLyzf+1
-kLe6+GtOrLK3cqjtsQOmFRz6PaScply1Pu//OQAJmjW37nc3DOnp8oyZzQJm3mKK0d2Ycv
-o7xCu124u6Ap7JfD87k8Vkp1whxjaOF/uE1QV/e1Lbn2/oxPCCH0EZnOLQRqNwm3jpolub
-2qO6TKbb5F3w7CSsHlMPoiGY/GDbwYJ0ah+fCtpCyWi2eH739YM2oB8C2ySE/MLwlldVir
-1/KPU0CzT0LmIYlamjd45ydj84oi6n1Y+sVTPl3nj+cyU2A9KTbIOcrayjIxJYLEzfN7ca
-IaLW4yAcmvXzdt7arK3fo2vwyEMdqlW7FyEfhGApAAAFoNAhNw3QITcNAAAAB3NzaC1yc2
-EAAAGBAJkAmxV2ypH+kqKgVUcO68Gd7eJsklki5FyGjGnuU9/KF1rc69YDocAuciPlhMrO
-0DtZWyjDXiaZAEyfP6jKtbF36DvGpx/EjTSXlWgFDnkO6Q2nKd9dDWlkcxRhAa2XzsNHP6
-W4oBzSVj/HB8jwm4v0Lt10+pgzQpIJkjAZRX5XJeaTVkn+XPu6bfnS8s3/tZC3uvhrTqyy
-t3Ko7bEDphUc+j2knKZctT7v/zkACZo1t+53Nwzp6fKMmc0CZt5iitHdmHL6O8QrtduLug
-KeyXw/O5PFZKdcIcY2jhf7hNUFf3tS259v6MTwgh9BGZzi0EajcJt46aJbm9qjukym2+Rd
-8OwkrB5TD6IhmPxg28GCdGofnwraQslotnh+9/WDNqAfAtskhPzC8JZXVYq9fyj1NAs09C
-5iGJWpo3eOcnY/OKIup9WPrFUz5d54/nMlNgPSk2yDnK2soyMSWCxM3ze3GiGi1uMgHJr1
-83be2qyt36Nr8MhDHapVuxchH4RgKQAAAAMBAAEAAAGAHPOJZPFaeW+zbYRrPovrPnLU3a
-BvvOAmV/+5uB25z0HdU3s0QQXk6ImhXXuDuiCSNHi/ECKPwTv4W4dSs2zQHqmyzwTTAObf
-VVFNmyZBy9Rvcv7rpHFmJUg1omiMub1dCYSE3aXm3i1K1ryhk3s746qr54nIFV61vQ6ElA
-dkJ/jzmgLNNCkmjReE0d4BxcsaHy00+ubLN1CF9/NRLsqi9aHLFDj+z1gBj8w3/iAssPpz
-OHNkflQQya2jOLC4qGH62b3Z7sN6bzlmlHkvA6X8x5UfBr7UU4xAdU1K0yDdFInoEobRFK
-y6cMBFPSEwVXYb7OVi77VVs/Ds7+7ZrOadUBwVL/6w8rlCXXio5NYzeEoOjQZnFkMJnMbN
-+oZ1vYbqj02TL2kLRH4SNq3z5mkdWG9RaT9vbN3HF54bzED/glNUuInu+oCHWBYZfgiI+A
-VIxJ9kFToDAZds1uZw29jHSxKac7nL0fjYWY8kcqH0y5Hmst18LGJFQhX4VSYPLZ5RAAAA
-wG1ZX7whSXPY2FzmPggwGJ0Ovhi4+7Wt8J1oYVvLrFafRr9JUl4rZ7/A6DBZq9XlQzLxv2
-VzNhEpdAJHSLQd/9dz/L9E4pdP4f6XfaS8+ZsF8WRlNU8i2NQiBwBlLT0RXsncrjwBlWTW
-QxN8NpZolYZupfrvHAU4lUoo42plw9X9iknBOCGSY08b4zWKwvK6I8UxiJTNAWeYDuSijU
-fpexPhEn46ru7NWUAq2AcXvbj3eDrZ7/xe0ijVoTjhV10w0AAAAMEAyEVkHEf++UcJRvrW
-ARx8UcT8tX3+fz9OI0BrG3xE1XfjI4xdourbG7Pjss+VLc9j1ChrzZKco/cnsoSgtf7AvM
-/lBiLEMamgMZMobIRR85a/kf8Ge2Cmz3gKrvEcBvxe3mzDL7IDVxFxgbdCg2Mf+h+ugbSl
-0EUko89p7DMWIMw9XGryjPmf+o7PL/hcRvzoMYLFq9KkAs6JRzKLzvE59PR0p9IHmpDigP
-EOwA4Y9e0ZMIwT3P9PVi8IUpEiXqeFAAAAwQDDk/VnkvqoLJ7qvJ/IWNxwz9y7WmO7zg0O
-KxWpnq+MIroKOFQXMfC1gUeBmBxwbeAc0wE7I6+fZhECSU2oEuP1oXdDgRzDZCdmQTm4+z
-qVzQNJsCtNJRjvbIl93bPiNau4Mo8Awxr0lfbMHzSmRC9hxL3cjZt3AUVVeUuEcg2CntPO
-ChI2KWJSUP7lyQJxObCvZnnysBl6aIxMufa4HUINHCqZVUnT+M/SEP2IQYs+11qHg6CE0p
-q7twIjvdTRDVUAAAAlbGVvLW9saXZlaXJhQE1hY0Jvb2stUHJvLWRlLUxlby5sb2NhbAEC
-AwQFBg==
------END OPENSSH PRIVATE KEY-----'
-
+      - name: Transfer files via SCP
+        run: |
+          echo "${{ secrets.DROPLET_PRIVATE_KEY }}" > ssh_private_key.pem
+          chmod 600 ssh_private_key.pem
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          scp -i ssh_private_key.pem -r docker/prod root@164.92.220.100:~
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
