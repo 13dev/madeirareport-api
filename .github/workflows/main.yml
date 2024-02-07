@@ -8,20 +8,22 @@ on:
 
 
 jobs:
-  code-linter:
-    uses: ./.github/workflows/code-linter.yml
-
-  code-formater:
-    uses: ./.github/workflows/code-formater.yml
-
-  test:
-    uses: ./.github/workflows/test.yml
-
-  test-coverage:
-    uses: ./.github/workflows/test-coverage.yml
-
-  build-check:
-    uses: ./.github/workflows/build-checker.yml
+#  code-linter:
+#    uses: ./.github/workflows/code-linter.yml
+#
+#  code-formater:
+#    uses: ./.github/workflows/code-formater.yml
+#
+#  test:
+#    uses: ./.github/workflows/test.yml
+#
+#  test-coverage:
+#    needs: test
+#    uses: ./.github/workflows/test-coverage.yml
+#
+#  build-check:
+#    uses: ./.github/workflows/build-checker.yml
 
   image-builder:
+    needs: build-check
     uses: ./.github/workflows/image-builder.yml
