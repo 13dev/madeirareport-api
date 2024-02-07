@@ -1,7 +1,7 @@
 name: code linter
 on:
   push:
-    branches: ["main","dev"]
+    branches: ["master","dev"]
 
 env:
   CARGO_TERM_COLOR: always
