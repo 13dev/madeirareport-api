@@ -46,7 +46,7 @@ jobs:
         with:
           source: "docker/prod/*"
           target: "~"
-          host: "api.madeirareport.pt"
+          host: "164.92.220.100"
           username: "root"
           key: '-----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
