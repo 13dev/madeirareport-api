@@ -46,10 +46,12 @@ jobs:
           chmod 600 ssh_private_key.pem
           mkdir -p ~/.ssh
           touch ~/.ssh/known_hosts
-          ssh-keyscan -H -t rsa "164.92.220.100" > ~/.ssh/known_hosts
-          scp -i ssh_private_key.pem -r docker/prod/docker-compose.yml root@164.92.220.100:~
+          ssh-keyscan -H -t rsa $HOST > ~/.ssh/known_hosts
+          scp -i ssh_private_key.pem -r docker/prod/docker-compose.yml $USER@$HOST:~
         env:
-          DROPLET_PRIVATE_KEY: ${{ vars.DROPLET_PRIVATE_KEY }}
+          DROPLET_PRIVATE_KEY: ${{ secrets.DROPLET_PRIVATE_KEY }}
+          HOST: ${{ vars.DROPLET_HOST }}
+          USER: ${{ vars.DROPLET_USER }}
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
