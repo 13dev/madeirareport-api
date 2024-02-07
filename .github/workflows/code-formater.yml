@@ -1,7 +1,6 @@
 name: format checker
 on:
-  push:
-    branches: ["master","dev"]
+  workflow_call:
 
 env:
   CARGO_TERM_COLOR: always

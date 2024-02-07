@@ -1,14 +1,11 @@
 name: build checker
+
 on:
-  push:
-    branches: ["master","dev"]
+  workflow_call:
 
 env:
   CARGO_TERM_COLOR: always
   RUST_LOG: info
-
-permissions:
-  contents: write
 
 jobs:
   check:

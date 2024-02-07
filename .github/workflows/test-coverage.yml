@@ -1,8 +1,7 @@
 name: test coverage
 
 on:
-  push:
-    branches: ["master"]
+  workflow_call:
 
 jobs:
   test:

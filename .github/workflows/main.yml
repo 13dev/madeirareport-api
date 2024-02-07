@@ -1,0 +1,27 @@
+
+name: Main Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  code-linter:
+    uses: ./.github/workflows/code-linter.yml
+
+  code-formater:
+    uses: ./.github/workflows/code-formatter.yml
+
+  test:
+    uses: ./.github/workflows/test.yml
+
+  test-coverage:
+    uses: ./.github/workflows/test-coverage.yml
+
+  build-check:
+    uses: ./.github/workflows/build-checker.yml
+
+  image-builder:
+    uses: ./.github/workflows/image-builder.yml
