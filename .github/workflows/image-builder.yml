@@ -42,12 +42,14 @@ jobs:
 
       - name: Transfer files via SCP
         run: |
-          echo "${{ secrets.DROPLET_PRIVATE_KEY }}" > ssh_private_key.pem
+          echo "$DROPLET_PRIVATE_KEY" > ssh_private_key.pem
           chmod 600 ssh_private_key.pem
           mkdir -p ~/.ssh
           touch ~/.ssh/known_hosts
-          ssh-keyscan -H ${{ secrets.DROPLET_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H api.madeirareport.pt >> ~/.ssh/known_hosts
           scp -i ssh_private_key.pem -r docker/prod root@164.92.220.100:~
+        env:
+          DROPLET_PRIVATE_KEY: ${{ secrets.DROPLET_PRIVATE_KEY }}
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
