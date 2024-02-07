@@ -49,7 +49,7 @@ jobs:
           ssh-keyscan -H -t rsa "api.madeirareport.pt" > ~/.ssh/known_hosts
           scp -i ssh_private_key.pem -r docker/prod/docker-compose.yml root@164.92.220.100:~
         env:
-          DROPLET_PRIVATE_KEY: ${{ secrets.DROPLET_PRIVATE_KEY }}
+          DROPLET_PRIVATE_KEY: ${{ vars.DROPLET_PRIVATE_KEY }}
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
