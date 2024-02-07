@@ -11,6 +11,7 @@ jobs:
   build:
     name: build image
     runs-on: ubuntu-latest
+    environment: main
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
