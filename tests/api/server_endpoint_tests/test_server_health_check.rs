@@ -1,4 +1,4 @@
-use rustfulapi::dto::MessageResponse;
+use madeirareport::dto::MessageResponse;
 use test_context::test_context;
 
 use crate::{assert_ok, context::app::AppTestContext};

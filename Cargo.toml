@@ -1,13 +1,12 @@
 [package]
-name = "rustfulapi"
-authors = ["Mahdi Robatipoor<mahdi.robatipoor@gmail.com>"]
-description = "RESTful API template built with Rust language"
+name = "madeirareport"
+authors = ["Leo Oliveira<leo@13dev.pt>"]
+description = "Madeira-report API"
 edition = "2021"
-homepage = "https://github.com/robatipoor/rustfulapi"
-keywords = ["web", "api", "rest","orm"]
-license = "MIT"
-repository = "https://github.com/robatipoor/rustfulapi"
-version = "0.1.0"
+homepage = "https://github.com/13dev/madeirareport-api"
+keywords = ["madeirareport-api"]
+repository = "https://github.com/13dev/madeirareport-api"
+version = "0.0.0"
 
 [[bin]]
 name = "app"

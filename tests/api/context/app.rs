@@ -1,5 +1,5 @@
 use once_cell::sync::Lazy;
-use rustfulapi::{
+use madeirareport::{
   client::database::{drop_database, migrate_database, setup_new_database, DatabaseClient},
   configure::AppConfig,
   error::AppResult,

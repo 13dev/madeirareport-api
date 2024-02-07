@@ -1,5 +1,5 @@
 use fake::{Fake, Faker};
-use rustfulapi::dto::{request::*, LoginResponse};
+use madeirareport::dto::{request::*, LoginResponse};
 use test_context::test_context;
 
 use crate::{assert_ok, context::app::AppTestContext};

@@ -24,8 +24,8 @@ pub const COMPLETE_TASK_DELAY_SECS: Duration = Duration::from_secs(10);
 pub const CHECK_EMAIL_MESSAGE: &str = "Please check you email.";
 pub const AUTHORIZATION: &str = "Authorization";
 pub const BEARER: &str = "Bearer";
-pub const APP_DOMAIN: &str = "rustfulapi.com";
-pub const APP_EMAIL_ADDR: &str = "rustfulapi@email.com";
+pub const APP_DOMAIN: &str = "madeirareport.com";
+pub const APP_EMAIL_ADDR: &str = "madeirareport@email.com";
 pub static IMAGES_PATH: Lazy<PathBuf> = Lazy::new(|| util::dir::root_dir("static/images").unwrap());
 pub static APP_IMAGE: Lazy<PathBuf> =
   Lazy::new(|| util::dir::root_dir("static/images/logo.jpg").unwrap());

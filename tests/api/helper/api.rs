@@ -3,13 +3,13 @@ use crate::unwrap;
 use super::result::AppResponseResult;
 use log_derive::logfn;
 use reqwest::StatusCode;
-use rustfulapi::client::http::HttpClientExt;
-use rustfulapi::configure::server::ServerConfig;
-use rustfulapi::constant::HTTP;
-use rustfulapi::dto::request::*;
-use rustfulapi::dto::response::*;
-use rustfulapi::dto::ServiceStatusResponse;
-use rustfulapi::util::claim::UserClaims;
+use madeirareport::client::http::HttpClientExt;
+use madeirareport::configure::server::ServerConfig;
+use madeirareport::constant::HTTP;
+use madeirareport::dto::request::*;
+use madeirareport::dto::response::*;
+use madeirareport::dto::ServiceStatusResponse;
+use madeirareport::util::claim::UserClaims;
 
 pub struct Api {
   addr: String,

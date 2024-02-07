@@ -1,5 +1,5 @@
 use crate::{assert_ok, context::seeder::SeedDbTestContext, unwrap};
-use rustfulapi::{
+use madeirareport::{
   dto::{LoginRequest, LoginResponse, SetPasswordRequest},
   entity::role::RoleUser,
   util,

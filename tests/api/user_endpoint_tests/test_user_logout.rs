@@ -1,5 +1,5 @@
 use crate::{assert_ok, context::seeder::SeedDbTestContext};
-use rustfulapi::{dto::LoginRequest, entity::role::RoleUser};
+use madeirareport::{dto::LoginRequest, entity::role::RoleUser};
 use test_context::test_context;
 
 #[test_context(SeedDbTestContext)]

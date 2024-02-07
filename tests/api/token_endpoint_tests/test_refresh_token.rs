@@ -1,6 +1,6 @@
 use crate::unwrap;
 use crate::{assert_err, context::seeder::SeedDbTestContext};
-use rustfulapi::{
+use madeirareport::{
   dto::{LoginRequest, LoginResponse, RefreshTokenRequest},
   error::AppResponseError,
 };
@@ -11,7 +11,7 @@ use test_context::test_context;
 pub async fn test_refresh_token(ctx: &mut SeedDbTestContext) {
   let user = ctx
     .users
-    .get(&rustfulapi::entity::role::RoleUser::User)
+    .get(&madeirareport::entity::role::RoleUser::User)
     .unwrap();
   let req = LoginRequest {
     email: user.email.clone(),

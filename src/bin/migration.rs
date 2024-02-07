@@ -1,4 +1,4 @@
-use rustfulapi::migration;
+use madeirareport::migration;
 use sea_orm_migration::prelude::*;
 
 #[tokio::main]

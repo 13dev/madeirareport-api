@@ -1,9 +1,9 @@
 use futures::FutureExt;
-use rustfulapi::constant::CONFIG;
-use rustfulapi::error::AppResult;
-use rustfulapi::server::worker::MessengerTask;
-use rustfulapi::server::AppServer;
-use rustfulapi::{configure, util};
+use madeirareport::constant::CONFIG;
+use madeirareport::error::AppResult;
+use madeirareport::server::worker::MessengerTask;
+use madeirareport::server::AppServer;
+use madeirareport::{configure, util};
 use tracing::info;
 
 #[tokio::main]

@@ -2,9 +2,9 @@ use crate::assert_err;
 use crate::context::app::AppTestContext;
 use crate::helper::result::AppResponseResult;
 use fake::{Fake, Faker};
-use rustfulapi::dto::request::*;
-use rustfulapi::dto::response::*;
-use rustfulapi::error::AppResponseError;
+use madeirareport::dto::request::*;
+use madeirareport::dto::response::*;
+use madeirareport::error::AppResponseError;
 use test_context::test_context;
 
 #[test_context(AppTestContext)]

@@ -1,4 +1,4 @@
-use rustfulapi::{
+use madeirareport::{
   dto::{LoginRequest, TokenInfoRequest},
   entity::role::RoleUser,
 };

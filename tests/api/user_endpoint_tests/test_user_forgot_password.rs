@@ -1,4 +1,4 @@
-use rustfulapi::entity::role::RoleUser;
+use madeirareport::entity::role::RoleUser;
 use test_context::test_context;
 
 use crate::context::seeder::SeedDbTestContext;

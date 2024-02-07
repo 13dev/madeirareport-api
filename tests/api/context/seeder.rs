@@ -1,7 +1,7 @@
 use crate::helper::user::TestUser;
 
 use super::app::AppTestContext;
-use rustfulapi::entity::role::RoleUser;
+use madeirareport::entity::role::RoleUser;
 use std::collections::HashMap;
 use test_context::AsyncTestContext;
 

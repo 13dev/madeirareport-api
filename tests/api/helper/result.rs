@@ -1,4 +1,4 @@
-use rustfulapi::{dto::MessageResponse, error::AppResponseError};
+use madeirareport::{dto::MessageResponse, error::AppResponseError};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]

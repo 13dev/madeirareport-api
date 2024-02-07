@@ -2,7 +2,7 @@ use crate::assert_ok;
 use crate::context::seeder::SeedDbTestContext;
 use crate::unwrap;
 use fake::{Fake, Faker};
-use rustfulapi::{
+use madeirareport::{
   dto::{LoginRequest, UpdateProfileRequest},
   entity::role::RoleUser,
 };

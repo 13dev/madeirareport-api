@@ -4,8 +4,8 @@ use crate::context::seeder::SeedDbTestContext;
 use crate::unwrap;
 use fake::Fake;
 use fake::Faker;
-use rustfulapi::dto::*;
-use rustfulapi::entity::role::RoleUser;
+use madeirareport::dto::*;
+use madeirareport::entity::role::RoleUser;
 use test_context::test_context;
 
 #[test_context(SeedDbTestContext)]

@@ -3,9 +3,9 @@ use std::str::FromStr;
 
 use anyhow::anyhow;
 use reqwest::StatusCode;
-use rustfulapi::client::http::HttpClientExt;
-use rustfulapi::configure::email::EmailConfig;
-use rustfulapi::constant::HTTP;
+use madeirareport::client::http::HttpClientExt;
+use madeirareport::configure::email::EmailConfig;
+use madeirareport::constant::HTTP;
 use scraper::Html;
 use scraper::Selector;
 use serde::Deserialize;
@@ -81,7 +81,7 @@ impl MailHogClient {
       let resp: Response = resp.json().await?;
       Ok(resp)
     };
-    let resp = rustfulapi::retry!(resp, |r: &Result<Response, reqwest::Error>| {
+    let resp = madeirareport::retry!(resp, |r: &Result<Response, reqwest::Error>| {
       match r {
         Ok(r) => r.items.len() >= 1,
         Err(_) => false,
@@ -226,7 +226,7 @@ mod tests {
 
   use super::*;
   use fake::{Fake, Faker};
-  use rustfulapi::{
+  use madeirareport::{
     client::{
       email::{EmailClient, EmailClientExt},
       ClientBuilder,
