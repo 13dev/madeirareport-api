@@ -50,8 +50,7 @@ jobs:
           host: ${{ vars.DROPLET_HOST }}
           port: 22
           username: ${{ vars.DROPLET_USER }}
-          key: |
-            echo "${{ secrets.DROPLET_PRIVATE_KEY }}" | base64 -d
+          key: ${{ secrets.DROPLET_PRIVATE_KEY }}
 
 
       - name: Transfer files via SCP
