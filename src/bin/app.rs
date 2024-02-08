@@ -5,6 +5,7 @@ use madeirareport::server::worker::MessengerTask;
 use madeirareport::server::AppServer;
 use madeirareport::{configure, util};
 use tracing::info;
+use madeirareport::client::{database};
 
 #[tokio::main]
 async fn main() -> AppResult<()> {
@@ -12,10 +13,15 @@ async fn main() -> AppResult<()> {
   info!("The initialization of Tracing was successful.");
   let config = CONFIG.clone();
   info!("Reading the config file was successful.");
-  let _sentry_guard = configure::sentry::init(&config.sentry);
-  info!("The initialization of Sentry was successful.");
+  // let _sentry_guard = configure::sentry::init(&config.sentry);
+  // info!("The initialization of Sentry was successful.");
+
   info!("Create a new server.");
   let server = AppServer::new(config).await?;
+
+  // Run all pending migrations
+  database::migrate_database(&server.state.db).await?;
+
   info!("Create a new messenger task.");
   let messenger = MessengerTask::new(server.state.clone());
   info!("Run the server.");
