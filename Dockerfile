@@ -1,3 +1,5 @@
+LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
+
 # build stage
 FROM rust:latest as builder
 
