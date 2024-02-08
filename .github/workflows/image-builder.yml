@@ -49,7 +49,7 @@ jobs:
           ssh-keyscan -H -t rsa $HOST > ~/.ssh/known_hosts
           scp -i ssh_private_key.pem -r docker/prod/docker-compose.yml $USER@$HOST:~
         env:
-          DROPLET_PRIVATE_KEY: ${{ vars.DROPLET_PRIVATE_KEY }}
+          DROPLET_PRIVATE_KEY: ${{ secrets.DROPLET_PRIVATE_KEY }}
           HOST: ${{ vars.DROPLET_HOST }}
           USER: ${{ vars.DROPLET_USER }}
       - name: Deploy
