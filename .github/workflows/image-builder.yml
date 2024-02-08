@@ -56,19 +56,19 @@ jobs:
           timeout: 120s
 
 
-      - name: Transfer files via SCP
-        shell: bash
-        run: |
-          echo $DROPLET_KEY | base64 -d > ssh_private_key.pem
-          chmod 600 ssh_private_key.pem
-          mkdir -p ~/.ssh
-          touch ~/.ssh/known_hosts
-          ssh-keyscan -H -t rsa $HOST > ~/.ssh/known_hosts
-          scp -i ssh_private_key.pem -r docker/prod/docker-compose.yml $USER@$HOST:~
-        env:
-          DROPLET_KEY: ${{ secrets.DROPLET_PRIVATE_KEY }}
-          HOST: ${{ vars.DROPLET_HOST }}
-          USER: ${{ vars.DROPLET_USER }}
+#      - name: Transfer files via SCP
+#        shell: bash
+#        run: |
+#          echo $DROPLET_KEY | base64 -d > ssh_private_key.pem
+#          chmod 600 ssh_private_key.pem
+#          mkdir -p ~/.ssh
+#          touch ~/.ssh/known_hosts
+#          ssh-keyscan -H -t rsa $HOST > ~/.ssh/known_hosts
+#          scp -i ssh_private_key.pem -r docker/prod/docker-compose.yml $USER@$HOST:~
+#        env:
+#          DROPLET_KEY: ${{ secrets.DROPLET_PRIVATE_KEY }}
+#          HOST: ${{ vars.DROPLET_HOST }}
+#          USER: ${{ vars.DROPLET_USER }}
 
       - name: Deploy
         uses: appleboy/ssh-action@master
