@@ -23,6 +23,7 @@ COPY settings settings
 
 # copy binary and configuration files
 COPY --from=builder /workspace/target/release/app .
+COPY --from=builder /workspace/target/release/migration .
 
 # expose port
 EXPOSE 8081

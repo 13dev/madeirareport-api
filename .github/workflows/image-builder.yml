@@ -86,4 +86,4 @@ jobs:
             echo "$GH_TOKEN" | docker login ghcr.io -u $USER --password-stdin
             cd ~/docker/prod
             docker-compose down
-            ./run.sh
+            ./up.sh
