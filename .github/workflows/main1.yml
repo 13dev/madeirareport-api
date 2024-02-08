@@ -108,8 +108,6 @@ jobs:
     needs: [lint, format, test, build]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
       # Cache dependencies
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -126,49 +124,49 @@ jobs:
         uses: ./.github/workflows/image-builder.yml
 
 
-  test-coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      # Cache dependencies
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: ${{ runner.os }}-cargo-
-      - name: Install nightly toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly
-          override: true
-      - name: Install tarpaulin
-        if: ${{ steps.cache-tarpaulin.outputs.cache-hit != 'true' }}
-        continue-on-error: true
-        uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: >
-            cargo-tarpaulin
-      - name: Migrate database
-        run: |
-          ./scripts/init_db.sh
-      - name: Add mockserver expectations
-        run: |
-          ./scripts/init_mockserver.sh
-      - name: Generate code coverage
-        run: |
-          cargo +nightly tarpaulin --verbose --all-features --workspace --timeout 120 --out Xml
-      - name: Upload to codecov.io
-        uses: codecov/codecov-action@v3
-        with:
-          fail_ci_if_error: true
+#  test-coverage:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v4
+#      # Cache dependencies
+#      - name: Cache dependencies
+#        uses: actions/cache@v2
+#        with:
+#          path: |
+#            ~/.cargo/bin/
+#            ~/.cargo/registry/index/
+#            ~/.cargo/registry/cache/
+#            ~/.cargo/git/db/
+#            target/
+#          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+#          restore-keys: ${{ runner.os }}-cargo-
+#      - name: Install nightly toolchain
+#        uses: actions-rs/toolchain@v1
+#        with:
+#          toolchain: nightly
+#          override: true
+#      - name: Install tarpaulin
+#        if: ${{ steps.cache-tarpaulin.outputs.cache-hit != 'true' }}
+#        continue-on-error: true
+#        uses: actions-rs/cargo@v1
+#        with:
+#          command: install
+#          args: >
+#            cargo-tarpaulin
+#      - name: Migrate database
+#        run: |
+#          ./scripts/init_db.sh
+#      - name: Add mockserver expectations
+#        run: |
+#          ./scripts/init_mockserver.sh
+#      - name: Generate code coverage
+#        run: |
+#          cargo +nightly tarpaulin --verbose --all-features --workspace --timeout 120 --out Xml
+#      - name: Upload to codecov.io
+#        uses: codecov/codecov-action@v3
+#        with:
+#          fail_ci_if_error: true
 
 #  security-checker:
 #    runs-on: ubuntu-latest
