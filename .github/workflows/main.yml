@@ -26,3 +26,4 @@ jobs:
 
   image-builder:
     uses: ./.github/workflows/image-builder.yml
+    secrets: inherit
