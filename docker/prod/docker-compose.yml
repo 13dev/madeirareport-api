@@ -58,7 +58,7 @@ services:
       - pg_admin_data:/var/lib/pgadmin
 
   nginx-proxy:
-    image: nginx-proxy/nginx-proxy
+    image: nginxproxy/nginx-proxy:1.4-alpine
     container_name: nginx-proxy
     restart: always
     networks:
