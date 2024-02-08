@@ -43,7 +43,7 @@ jobs:
 #        run: echo ${{ steps.docker_build.outputs.digest }}
 
       - name: Copy docker/prod to droplet
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.4
         with:
           source: 'docker/prod/*'
           target: '~'
