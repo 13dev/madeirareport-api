@@ -52,6 +52,7 @@ jobs:
           username: ${{ vars.DROPLET_USER }}
           key: ${{ secrets.DROPLET_PRIVATE_KEY }}
           debug: true
+          overwrite: true
 
 
       - name: Transfer files via SCP
