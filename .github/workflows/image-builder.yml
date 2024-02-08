@@ -42,7 +42,7 @@ jobs:
 
       - name: Transfer files via SCP
         run: |
-          echo "$DROPLET_PRIVATE_KEY" > ssh_private_key.pem
+          echo "${DROPLET_PRIVATE_KEY}" > ssh_private_key.pem
           chmod 600 ssh_private_key.pem
           mkdir -p ~/.ssh
           touch ~/.ssh/known_hosts
