@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install lld clang -y
 
 COPY . .
 
+RUN cargo install bunyan
 RUN cargo build --release
 
 # deploy stage
@@ -24,8 +25,8 @@ COPY static static
 COPY settings settings
 
 # copy binary and configuration files
+COPY --from=builder /usr/local/cargo/bin/bunyan /usr/local/bin/bunyan
 COPY --from=builder /workspace/target/release/app .
-COPY --from=builder /workspace/target/release/migration .
 
 # expose port
 EXPOSE 8081
@@ -35,4 +36,4 @@ ENV APP_PROFILE prod
 ENV RUST_LOG info
 
 # run the binary
-ENTRYPOINT ["./app"]
+ENTRYPOINT ["sh", "-c", "./app | bunyan"]
