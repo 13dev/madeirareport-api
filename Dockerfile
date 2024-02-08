@@ -1,7 +1,6 @@
-LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
-
 # build stage
 FROM rust:latest as builder
+LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
 
 WORKDIR /workspace
 
@@ -13,6 +12,7 @@ RUN cargo build --release
 
 # deploy stage
 FROM debian:bookworm-slim
+LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
 
 RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates && apt-get clean
 
