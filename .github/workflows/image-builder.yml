@@ -3,8 +3,6 @@ name: build docker image
 on:
   workflow_call:
 
-permissions:
-  contents: write
 env:
   CARGO_TERM_COLOR: always
   RUST_LOG: info
@@ -13,7 +11,6 @@ jobs:
   build:
     name: build image
     runs-on: ubuntu-latest
-    environment: main
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
