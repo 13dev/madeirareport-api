@@ -69,14 +69,21 @@ jobs:
           DROPLET_KEY: ${{ secrets.DROPLET_PRIVATE_KEY }}
           HOST: ${{ vars.DROPLET_HOST }}
           USER: ${{ vars.DROPLET_USER }}
+
       - name: Deploy
         uses: appleboy/ssh-action@master
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          USER: ${{ github.actor }}
         with:
-          host: ${{ secrets.DROPLET_HOST }}
-          username: ${{ secrets.DROPLET_USER }}
+          host: ${{ vars.DROPLET_HOST }}
+          username: ${{ vars.DROPLET_USER }}
           key: ${{ secrets.DROPLET_PRIVATE_KEY }}
+          envs: GH_TOKEN,USER
           port: 22
           script: |
-            cd ~
-            chmod +x run.sh
+            echo "Login to ghcr.io..."
+            echo "$GH_TOKEN" | docker login ghcr.io -u $USER --password-stdin
+            cd ~/docker/prod
+            docker-compose down
             ./run.sh
