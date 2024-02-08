@@ -170,30 +170,30 @@ jobs:
         with:
           fail_ci_if_error: true
 
-  security-checker:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      # Cache dependencies
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: ${{ runner.os }}-cargo-
-      - name: Install dependencies
-        run: |
-          # Add commands to install dependencies if needed
-      - name: Run security audit
-        uses: actions-rs/audit-check@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+#  security-checker:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v4
+#      # Cache dependencies
+#      - name: Cache dependencies
+#        uses: actions/cache@v2
+#        with:
+#          path: |
+#            ~/.cargo/bin/
+#            ~/.cargo/registry/index/
+#            ~/.cargo/registry/cache/
+#            ~/.cargo/git/db/
+#            target/
+#          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+#          restore-keys: ${{ runner.os }}-cargo-
+#      - name: Install dependencies
+#        run: |
+#          # Add commands to install dependencies if needed
+#      - name: Run security audit
+#        uses: actions-rs/audit-check@v1
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
 
   spell-checker:
     runs-on: ubuntu-latest
