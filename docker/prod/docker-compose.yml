@@ -11,6 +11,11 @@ services:
     env_file: ./.env
     volumes:
       - app_data:/logs
+    environment:
+      VIRTUAL_HOST: api.madeirareport.pt
+      VIRTUAL_PORT: ${APP_SERVER__PORT}
+      LETSENCRYPT_HOST: madeirareport.pt
+
   postgres-db:
     image: "postgres:latest"
     container_name: postgres-database
@@ -51,20 +56,18 @@ services:
       PGADMIN_DEFAULT_PASSWORD: rustfulapi-user
     volumes:
       - pg_admin_data:/var/lib/pgadmin
-  webserver:
-    image: nginx:latest
-    container_name: nginx-service
+
+  nginx-proxy:
+    image: nginx-proxy/nginx-proxy
+    container_name: nginx-proxy
     restart: always
     networks:
       - server-side
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
-
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
 networks:
   server-side: {}
 
