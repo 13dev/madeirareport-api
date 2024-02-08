@@ -191,6 +191,7 @@ jobs:
             echo "$GH_TOKEN" | docker login ghcr.io -u $USER --password-stdin
             cd ~/docker/prod
             docker-compose down
+            docker-compose pull
             ./restart.sh
 
 
