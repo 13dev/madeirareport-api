@@ -23,6 +23,9 @@ COPY --from=dependencies /workspace/recipe.json recipe.json
 # Build the project
 RUN cargo chef cook --release --recipe-path recipe.json
 
+# Install bunyan
+RUN cargo install bunyan
+
 # deploy stage
 FROM debian:bookworm-slim
 LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
