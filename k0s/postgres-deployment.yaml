@@ -17,13 +17,13 @@ spec:
           image: postgres:latest
           env:
             - name: POSTGRES_USER
-              value: "${APP_DB__USERNAME}"
+              value: "username"
             - name: POSTGRES_PASSWORD
-              value: "${APP_DB__PASSWORD}"
+              value: "password"
             - name: POSTGRES_DB
-              value: "${APP_DB__DATABASE_NAME}"
+              value: "database_name"
             - name: POSTGRES_HOST
-              value: "${APP_DB__HOST}"
+              value: "localhost"
           volumeMounts:
             - name: pg-data
               mountPath: /var/lib/postgresql/data

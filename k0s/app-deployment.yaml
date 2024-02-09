@@ -18,12 +18,8 @@ spec:
         - name: application
           image: ghcr.io/13dev/madeirareport-api:latest
           env:
-            - name: VIRTUAL_HOST
-              value: "api.madeirareport.pt"
-            - name: VIRTUAL_PORT
-              value: "${APP_SERVER__PORT}"
-            - name: LETSENCRYPT_HOST
-              value: "api.madeirareport.pt"
+            - name: APP_DB__HOST
+              value: "postgres-db"
           volumeMounts:
             - name: app-data
               mountPath: /logs

@@ -189,7 +189,7 @@ jobs:
           script: |
             echo "Login to ghcr.io..."
             
-            if kubectl get secret ghcr-secret -n default 2>/dev/null; then
+            if k0s kubectl get secret ghcr-secret -n default 2>/dev/null; then
               echo "Secret already exists."
             else
               kubectl create secret docker-registry ghcr-secret \
@@ -199,7 +199,7 @@ jobs:
               --docker-email=leo@13dev.pt
             fi
 
-            k0s kubectl apply -f ~/k0s
+            k0s kubectl apply --recursive -f ~/k0s
 
 
 #  test-coverage:
