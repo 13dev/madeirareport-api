@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   application:
+    tty: true
     image: "ghcr.io/13dev/madeirareport-api:latest"
     container_name: application
     networks:
@@ -14,7 +15,7 @@ services:
     environment:
       VIRTUAL_HOST: api.madeirareport.pt
       VIRTUAL_PORT: ${APP_SERVER__PORT}
-      LETSENCRYPT_HOST: madeirareport.pt
+      LETSENCRYPT_HOST: api.madeirareport.pt
 
   postgres-db:
     image: "postgres:latest"
