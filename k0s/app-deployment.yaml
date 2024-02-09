@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application
+  template:
+    metadata:
+      labels:
+        app: application
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: application
+          image: ghcr.io/13dev/madeirareport-api:latest
+          env:
+            - name: VIRTUAL_HOST
+              value: "api.madeirareport.pt"
+            - name: VIRTUAL_PORT
+              value: "${APP_SERVER__PORT}"
+            - name: LETSENCRYPT_HOST
+              value: "api.madeirareport.pt"
+          volumeMounts:
+            - name: app-data
+              mountPath: /logs
+      volumes:
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: app-data

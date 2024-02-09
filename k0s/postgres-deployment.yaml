@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-db
+  template:
+    metadata:
+      labels:
+        app: postgres-db
+    spec:
+      containers:
+        - name: postgres-db
+          image: postgres:latest
+          env:
+            - name: POSTGRES_USER
+              value: "${APP_DB__USERNAME}"
+            - name: POSTGRES_PASSWORD
+              value: "${APP_DB__PASSWORD}"
+            - name: POSTGRES_DB
+              value: "${APP_DB__DATABASE_NAME}"
+            - name: POSTGRES_HOST
+              value: "${APP_DB__HOST}"
+          volumeMounts:
+            - name: pg-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: pg-data
+          persistentVolumeClaim:
+            claimName: pg-data
