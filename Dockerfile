@@ -1,30 +1,15 @@
-# base stage for dependencies
-FROM rust:latest as dependencies
+# build stage
+FROM rust:latest as builder
 LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
 
 WORKDIR /workspace
 
 RUN apt-get update && apt-get install lld clang -y
 
-# Install cargo chef
-RUN cargo install cargo-chef --version 0.1.33
-
 COPY . .
 
-# Preheat the dependency cache
-RUN cargo chef prepare --recipe-path recipe.json
-
-# build stage
-FROM dependencies as builder
-
-# Copy over the pre-built dependencies
-COPY --from=dependencies /workspace/recipe.json recipe.json
-
-# Build the project
-RUN cargo chef cook --release --recipe-path recipe.json
-
-# Install bunyan
 RUN cargo install bunyan
+RUN cargo build --release
 
 # deploy stage
 FROM debian:bookworm-slim
