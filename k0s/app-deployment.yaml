@@ -17,6 +17,7 @@ spec:
       containers:
         - name: application
           image: ghcr.io/13dev/madeirareport-api:latest
+          imagePullPolicy: Always
           env:
             - name: APP_DB__HOST
               value: "postgres-db"
