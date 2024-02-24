@@ -1,4 +1,4 @@
-use sea_orm_migration::prelude::*;
+use sea_orm_migration::{prelude::*, schema::*};
 
 #[derive(DeriveMigrationName)]
 pub struct Migration;
@@ -10,7 +10,7 @@ impl MigrationTrait for Migration {
             Table::create()
                 .table(Reports::Table)
                 .if_not_exists()
-                .col(ColumnDef::new(Reports::Id).integer().not_null().primary_key().auto_increment())
+                .col(integer() ColumnDef::new(Reports::Id).integer().not_null().primary_key().auto_increment())
                 .col(ColumnDef::new(Reports::CategoryId).integer().unsigned().not_null())
                 .col(ColumnDef::new(Reports::Description).text().null())
                 .col(ColumnDef::new(Reports::AttachmentsId).integer().unsigned().not_null())

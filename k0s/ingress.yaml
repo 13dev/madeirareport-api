@@ -7,10 +7,10 @@ spec:
     - host: api.madeirareport.pt
       http:
         paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
+          - backend:
               service:
                 name: application-service
                 port:
                   number: 80
+            path: /
+            pathType: Exact
