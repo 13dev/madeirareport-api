@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install lld clang -y
 COPY --from=planner /workspace/recipe.json recipe.json
 COPY . .
 RUN cargo install bunyan
+RUN cargo install cargo-chef
 RUN cargo chef cook --release --recipe-path recipe.json
 
 # deploy stage
