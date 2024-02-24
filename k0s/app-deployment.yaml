@@ -32,7 +32,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: APP_DB__HOST
-              value: "postgres-db"
+              value: "postgres-service"
             - name: APP_SERVER__PORT
               value: "8081"
           volumeMounts:
