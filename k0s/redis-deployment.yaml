@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+spec:
+  selector:
+    app: redis-db
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,8 +29,8 @@ spec:
           image: redis:latest
           env:
             - name: REDIS_USER
-              value: "${APP_REDIS__USERNAME}"
+              value: "redis-user"
             - name: REDIS_PASSWORD
-              value: "${APP_REDIS__PASSWORD}"
+              value: "303fiwe9i2ll3dsi21k1-2k-F"
             - name: REDIS_DB
-              value: "${APP_REDIS__DATABASE_NAME}"
+              value: "madeirareport"
