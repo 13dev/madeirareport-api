@@ -9,8 +9,7 @@ RUN cargo chef prepare --recipe-path recipe.json
 
 FROM $BASE_IMAGE as cacher
 RUN apt update \
-    && apt install -y pkg-config \
-    && apt install libssl-dev \
+    && apt install -y --no-install-recommends pkg-config libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
@@ -20,11 +19,7 @@ RUN cargo install bunyan
 COPY --from=planner /workspace/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 
-FROM $BASE_IMAGE as builder
-RUN apt update \
-    && apt install -y pkg-config \
-    && apt install libssl-dev \
-    && rm -rf /var/lib/apt/lists/*
+FROM cacher as builder
 WORKDIR /workspace
 COPY . .
 # Copy over the cached dependencies
