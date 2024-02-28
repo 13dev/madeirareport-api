@@ -5,8 +5,7 @@ use fake::faker::internet::en::FreeEmail;
 use fake::{Fake, Faker};
 use madeirareport::{entity, util};
 use madeirareport::{entity::role::RoleUser, error::AppResult};
-use sea_orm::{ActiveModelTrait, DatabaseConnection, Set};
-use strum::IntoEnumIterator;
+use sea_orm::{ActiveModelTrait, DatabaseConnection, Iterable, Set};
 use uuid::Uuid;
 
 pub struct TestUser {
