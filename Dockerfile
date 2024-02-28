@@ -1,31 +1,49 @@
-# syntax=docker/dockerfile:1
-# build stage
-FROM rust:latest as planner
+ARG BASE_IMAGE=rust:1.74.1-slim-buster
+
+FROM $BASE_IMAGE as planner
+LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
 WORKDIR /workspace
-RUN cargo install cargo-chef
+RUN cargo install cargo-chef --version 0.1.64 --locked
 COPY . .
 RUN cargo chef prepare --recipe-path recipe.json
 
-FROM rust:latest as builder
-LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
+FROM $BASE_IMAGE as cacher
+RUN apt update \
+    && apt install -y pkg-config \
+    && apt install libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /workspace
-RUN apt-get update && apt-get install lld clang -y
-COPY --from=planner /workspace/recipe.json recipe.json
-COPY . .
+RUN cargo install cargo-chef --version 0.1.64 --locked
 RUN cargo install bunyan
-RUN cargo install cargo-chef
+
+COPY --from=planner /workspace/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 
-# deploy stage
-FROM debian:bookworm-slim
-LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
-RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates && apt-get clean
+FROM $BASE_IMAGE as builder
+RUN apt update \
+    && apt install -y pkg-config \
+    && apt install libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /workspace
+COPY . .
+# Copy over the cached dependencies
+COPY --from=cacher /workspace/target target
+COPY --from=cacher $CARGO_HOME $CARGO_HOME
+RUN cargo build --release
+
+FROM gcr.io/distroless/cc-debian10
+LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
+
 COPY static static
 COPY settings settings
-COPY --from=builder /usr/local/cargo/bin/bunyan /usr/local/bin/bunyan
-COPY --from=builder /workspace/target/release/app .
-EXPOSE 8081
+COPY --from=builder /bin/sh /bin/sh
+COPY --from=builder /workspace/target/release/app /
+COPY --from=cacher /usr/local/cargo/bin/bunyan /usr/local/bin/bunyan
+
 ENV APP_PROFILE prod
 ENV RUST_LOG info
+
+EXPOSE 8081
+
 ENTRYPOINT ["sh", "-c", "./app | bunyan"]
