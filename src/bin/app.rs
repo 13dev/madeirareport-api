@@ -13,8 +13,8 @@ async fn main() -> AppResult<()> {
   info!("The initialization of Tracing was successful.");
   let config = CONFIG.clone();
   info!("Reading the config file was successful.");
-  // let _sentry_guard = configure::sentry::init(&config.sentry);
-  // info!("The initialization of Sentry was successful.");
+  let _sentry_guard = configure::sentry::init(&config.sentry);
+  info!("The initialization of Sentry was successful.");
 
   info!("Create a new server.");
   let server = AppServer::new(config).await?;
