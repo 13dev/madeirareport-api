@@ -24,7 +24,7 @@ host = "127.0.0.1"
 port = 1_025
 
 [sentry]
-key = "https://92654da696494bd2b88f06438aef9fb3@o1055779.ingest.sentry.io/6583480"
+key = "https://cf57e25524b4966607be2121590a7665@o376701.ingest.sentry.io/4506826357604352"
 
 [secret]
 private_access_key = "static/key/private_access_rsa_key.pem"

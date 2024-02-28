@@ -5,3 +5,7 @@ target/
 scripts/
 .idea/
 k0s/
+docker/
+.github/
+docs/
+logs/
