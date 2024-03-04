@@ -23,10 +23,10 @@ impl DatabaseClientExt for DatabaseClient {
     opt
       .max_connections(100)
       .min_connections(5)
-      .connect_timeout(Duration::from_secs(8))
-      .acquire_timeout(Duration::from_secs(8))
-      .idle_timeout(Duration::from_secs(8))
-      .max_lifetime(Duration::from_secs(8))
+      .connect_timeout(Duration::from_secs(10))
+      .acquire_timeout(Duration::from_secs(10))
+      .idle_timeout(Duration::from_secs(10))
+      .max_lifetime(Duration::from_secs(10))
       .sqlx_logging(true)
       .sqlx_logging_level(log::LevelFilter::Info);
     let db = Database::connect(opt).await?;
