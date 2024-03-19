@@ -21,12 +21,12 @@ impl DatabaseClientExt for DatabaseClient {
   async fn build_from_config(config: &AppConfig) -> AppResult<Self> {
     let mut opt = ConnectOptions::new(config.db.get_url());
     opt
-      .max_connections(100)
-      .min_connections(5)
+      .max_connections(200)
+      .min_connections(2)
       .connect_timeout(Duration::from_secs(1000))
-      .acquire_timeout(Duration::from_secs(200))
-      .idle_timeout(Duration::from_secs(100))
-      .max_lifetime(Duration::from_secs(200))
+      .acquire_timeout(Duration::from_secs(1000))
+      .idle_timeout(Duration::from_secs(1000))
+      .max_lifetime(Duration::from_secs(1000))
       .sqlx_logging(true)
       .sqlx_logging_level(log::LevelFilter::Info);
     let db = Database::connect(opt).await?;
