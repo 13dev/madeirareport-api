@@ -191,7 +191,7 @@ jobs:
             
             echo "Executing kubectl port-forward..."
             chmod +x ./manifests/port-forward.sh
-            ./manifests/port-forward.sh
+            ./manifests/port-forward.sh &
             
 
 #  test-coverage:
