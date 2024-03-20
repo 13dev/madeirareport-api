@@ -37,6 +37,7 @@ COPY --from=builder /workspace/target/release/app /
 COPY --from=cacher /usr/local/cargo/bin/bunyan /usr/local/bin/bunyan
 
 ENV APP_PROFILE prod
+ENV APP_DB__HOST postgres-db-1
 ENV RUST_LOG info
 ENV APP_SERVER__PORT 8000
 

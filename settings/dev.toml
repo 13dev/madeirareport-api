@@ -1,11 +1,11 @@
 profile = "dev"
 
 [server]
-addr = "127.0.0.1"
+addr = "0.0.0.0"
 port = 8_000
 
 [db]
-host = "127.0.0.1"
+host = "postgres-db"
 port = 5_432
 username = "username"
 password = "password"

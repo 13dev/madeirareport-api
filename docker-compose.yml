@@ -26,6 +26,7 @@ services:
       - POSTGRES_PASSWORD=${APP_DB__PASSWORD}
       - POSTGRES_DB=${APP_DB__DATABASE_NAME}
       - POSTGRES_HOST=${APP_DB__HOST}
+    env_file: .env.dev
     ports:
       - "${APP_DB__PORT}:${APP_DB__PORT}"
   redis-db:
