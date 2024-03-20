@@ -190,7 +190,8 @@ jobs:
             kubectl apply --recursive -f ~/manifests
             
             echo "Executing kubectl port-forward..."
-            chmod +x ./manifests/port-forward.sh && ./manifests/port-forward.sh
+            chmod +x ./manifests/port-forward.sh
+            ./manifests/port-forward.sh
             
 
 #  test-coverage:

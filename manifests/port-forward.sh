@@ -3,10 +3,20 @@
 # Process name
 PROCESS_NAME="port-forward"
 
+# Check if another instance of this script is already running
+LOCK_FILE="/tmp/port-forward.lock"
+if [ -f "$LOCK_FILE" ]; then
+    echo "Another instance of the script is already running."
+    exit 0
+else
+    touch "$LOCK_FILE"
+fi
+
 # Check if the process is already running
 if pgrep -f "$PROCESS_NAME" >/dev/null; then
     echo "Process $PROCESS_NAME is already running."
-    exit 1
+    rm "$LOCK_FILE"
+    exit 0
 fi
 
 # Start the port-forward process
@@ -21,11 +31,14 @@ if ps -p $FORWARD_PID >/dev/null; then
     echo "Port-forward process is now running."
 else
     echo "Failed to start port-forward process."
-    exit 1
+    rm "$LOCK_FILE"
+    exit 0
 fi
 
 # Enter the main loop
 while true; do
-    # Do whatever you want inside the loop
     sleep 5s
 done
+
+# Remove the lock file when the script exits
+trap 'rm "$LOCK_FILE"' EXIT
