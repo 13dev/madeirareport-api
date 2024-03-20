@@ -1,11 +1,12 @@
 use futures::FutureExt;
+use madeirareport::client::database;
 use madeirareport::constant::CONFIG;
 use madeirareport::error::AppResult;
 use madeirareport::server::worker::MessengerTask;
 use madeirareport::server::AppServer;
 use madeirareport::{configure, util};
-use tracing::info;
-use madeirareport::client::{database};
+use sentry::sentry_debug;
+use tracing::{error, info};
 
 #[tokio::main]
 async fn main() -> AppResult<()> {
@@ -15,7 +16,7 @@ async fn main() -> AppResult<()> {
   info!("Reading the config file was successful.");
   let _sentry_guard = configure::sentry::init(&config.sentry);
   info!("The initialization of Sentry was successful.");
-
+  
   info!("Create a new server.");
   let server = AppServer::new(config).await?;
 

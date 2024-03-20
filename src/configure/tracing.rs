@@ -22,6 +22,7 @@ where
     .with(JsonStorageLayer)
     .with(BunyanFormattingLayer::new(name.into(), std::io::stdout))
     .with(BunyanFormattingLayer::new(name.into(), writer))
+    .with(sentry_tracing::layer())
 }
 
 pub fn init_subscriber<S>(subscriber: S) -> anyhow::Result<()>

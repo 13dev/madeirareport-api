@@ -2,10 +2,10 @@ use std::fmt::Display;
 use std::str::FromStr;
 
 use anyhow::anyhow;
-use reqwest::StatusCode;
 use madeirareport::client::http::HttpClientExt;
 use madeirareport::configure::email::EmailConfig;
 use madeirareport::constant::HTTP;
+use reqwest::StatusCode;
 use scraper::Html;
 use scraper::Selector;
 use serde::Deserialize;

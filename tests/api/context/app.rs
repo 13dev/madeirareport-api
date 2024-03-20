@@ -1,4 +1,3 @@
-use once_cell::sync::Lazy;
 use madeirareport::{
   client::database::{drop_database, migrate_database, setup_new_database, DatabaseClient},
   configure::{env::get_env_source, AppConfig},
@@ -6,6 +5,7 @@ use madeirareport::{
   error::AppResult,
   server::{self, state::AppState, worker::MessengerTask},
 };
+use once_cell::sync::Lazy;
 use test_context::AsyncTestContext;
 use tokio::task::JoinHandle;
 use tracing::info;

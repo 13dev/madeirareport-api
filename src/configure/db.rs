@@ -29,7 +29,10 @@ impl DatabaseConfig {
     port: u16,
     database_name: &str,
   ) -> String {
-    info!("{}", format!("postgres://{username}:{password}@{host}:{port}/{database_name}"));
+    info!(
+      "{}",
+      format!("postgres://{username}:{password}@{host}:{port}/{database_name}")
+    );
     format!("postgres://{username}:{password}@{host}:{port}/{database_name}")
   }
 }

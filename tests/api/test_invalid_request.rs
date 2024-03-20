@@ -1,7 +1,7 @@
 use crate::{assert_err, context::app::AppTestContext};
 use fake::Fake;
-use reqwest::StatusCode;
 use madeirareport::error::AppResponseError;
+use reqwest::StatusCode;
 use test_context::test_context;
 
 #[test_context(AppTestContext)]

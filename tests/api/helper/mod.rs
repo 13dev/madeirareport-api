@@ -1,5 +1,5 @@
-use once_cell::sync::Lazy;
 use madeirareport::configure;
+use once_cell::sync::Lazy;
 use tracing_bunyan_formatter::{BunyanFormattingLayer, JsonStorageLayer};
 use tracing_subscriber::{layer::SubscriberExt, EnvFilter, Registry};
 

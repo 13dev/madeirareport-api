@@ -2,7 +2,6 @@ use crate::unwrap;
 
 use super::result::AppResponseResult;
 use log_derive::logfn;
-use reqwest::StatusCode;
 use madeirareport::client::http::HttpClientExt;
 use madeirareport::configure::server::ServerConfig;
 use madeirareport::constant::HTTP;
@@ -10,6 +9,7 @@ use madeirareport::dto::request::*;
 use madeirareport::dto::response::*;
 use madeirareport::dto::ServiceStatusResponse;
 use madeirareport::util::claim::UserClaims;
+use reqwest::StatusCode;
 
 pub struct Api {
   addr: String,

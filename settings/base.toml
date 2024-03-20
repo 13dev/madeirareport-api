@@ -25,6 +25,7 @@ port = 1_025
 
 [sentry]
 key = "https://cf57e25524b4966607be2121590a7665@o376701.ingest.sentry.io/4506826357604352"
+traces_sample_rate = 0.1
 
 [secret]
 private_access_key = "static/key/private_access_rsa_key.pem"
