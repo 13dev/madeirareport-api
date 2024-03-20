@@ -30,19 +30,6 @@ spec:
         - name: application
           image: ghcr.io/13dev/madeirareport-api:latest
           imagePullPolicy: Always
-          env:
-            - name: APP_DB__HOST
-              value: "postgres-service"
-            - name: APP_SERVER__PORT
-              value: "8000"
-            - name: APP_REDIS__USER
-              value: "redis-user"
-            - name: APP_REDIS__PASSWORD
-              value: "303fiwe9i2ll3dsi21k1-2k-F"
-            - name: APP_REDIS__DB
-              value: "madeirareport"
-            - name: APP_REDIS__HOST
-              value: "redis-service"
           volumeMounts:
             - name: app-data
               mountPath: /logs
