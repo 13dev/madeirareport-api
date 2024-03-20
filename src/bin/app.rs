@@ -5,8 +5,8 @@ use madeirareport::error::AppResult;
 use madeirareport::server::worker::MessengerTask;
 use madeirareport::server::AppServer;
 use madeirareport::{configure, util};
-use sentry::sentry_debug;
-use tracing::{error, info};
+
+use tracing::{info};
 
 #[tokio::main]
 async fn main() -> AppResult<()> {

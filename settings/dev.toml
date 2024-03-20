@@ -13,7 +13,7 @@ database_name = "database_name"
 max_connections = 5
 
 [redis]
-username = "redis_user"
+username = "redis-user"
 password = ""
 host = "127.0.0.1"
 port = 6_379

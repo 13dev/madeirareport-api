@@ -1,4 +1,5 @@
 use std::sync::Arc;
+use log::info;
 
 use tokio::sync::Notify;
 
@@ -11,6 +12,7 @@ use crate::client::{
 };
 use crate::configure::AppConfig;
 use crate::error::AppResult;
+use crate::service::token::info;
 
 #[derive(Clone)]
 pub struct AppState {
@@ -25,8 +27,11 @@ pub struct AppState {
 impl AppState {
   pub async fn new(config: AppConfig) -> AppResult<Self> {
     let redis = Arc::new(RedisClient::build_from_config(&config)?);
+    info!("Connected to redis: {}!", &config.redis.get_url());
     let email = Arc::new(EmailClient::build_from_config(&config)?);
+    info!("Connected to email: {}!", &config.email.get_addr());
     let db = Arc::new(DatabaseClient::build_from_config(&config).await?);
+    info!("Connected to db: {}!", &config.db.get_url());
     let http = HttpClient::build_from_config(&config)?;
     Ok(Self {
       config: Arc::new(config),
