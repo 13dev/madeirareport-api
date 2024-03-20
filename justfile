@@ -1,10 +1,10 @@
 #!/usr/bin/env just --justfile
 
 docker command='up' args='':
-    docker-compose -p "madeirareport-api" --env-file ".env" {{command}} -d {{args}}
+    docker-compose --verbose -p "madeirareport-api" {{command}} -d {{args}}
 
 release:
-  cargo build --release    
+  cargo build --release
 
 
 build:

@@ -1,10 +1,10 @@
-.env
+.env.dev
 .dockerignore
 Dockerfile
 target/
 scripts/
 .idea/
-k0s/
+manifests/
 docker/
 .github/
 docs/

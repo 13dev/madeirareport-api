@@ -2,7 +2,7 @@ profile = "dev"
 
 [server]
 addr = "127.0.0.1"
-port = 8_081
+port = 8_000
 
 [db]
 host = "127.0.0.1"

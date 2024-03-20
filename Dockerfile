@@ -38,7 +38,8 @@ COPY --from=cacher /usr/local/cargo/bin/bunyan /usr/local/bin/bunyan
 
 ENV APP_PROFILE prod
 ENV RUST_LOG info
+ENV APP_SERVER__PORT 8000
 
-EXPOSE 8081
+EXPOSE $APP_SERVER__PORT
 
 ENTRYPOINT ["sh", "-c", "./app | bunyan"]

@@ -1,6 +1,6 @@
 [server]
 addr = "0.0.0.0"
-port = 8_081
+port = 8_000
 
 [db]
 host = "127.0.0.1"

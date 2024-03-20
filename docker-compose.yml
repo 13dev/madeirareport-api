@@ -1,20 +1,20 @@
 version: "3.9"
 services:
-#  application:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    container_name: application
-#    ports:
-#      - "${APP_SERVER__PORT}:${APP_SERVER__PORT}"
-#    networks:
-#      - server-side
-#    depends_on:
-#      - postgres-db
-#      - redis-db
-#    env_file: ./.env
-#    volumes:
-#      - app_data:/log
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: application
+    ports:
+      - "${APP_SERVER__PORT}:${APP_SERVER__PORT}"
+    networks:
+      - server-side
+    depends_on:
+      - postgres-db
+      - redis-db
+    env_file: .env.dev
+    volumes:
+      - app_data:/log
   postgres-db:
     image: "postgres:latest"
     container_name: postgres-database
