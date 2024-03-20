@@ -12,13 +12,6 @@ else
     touch "$LOCK_FILE"
 fi
 
-# Check if the process is already running
-if pgrep -f "$PROCESS_NAME" >/dev/null; then
-    echo "Process $PROCESS_NAME is already running."
-    rm "$LOCK_FILE"
-    exit 0
-fi
-
 # Start the port-forward process
 kubectl port-forward service/postgres-service 5432:5432 &
 FORWARD_PID=$!  # Capture the PID of the port-forward process
