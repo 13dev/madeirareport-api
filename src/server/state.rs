@@ -26,12 +26,15 @@ pub struct AppState {
 
 impl AppState {
   pub async fn new(config: AppConfig) -> AppResult<Self> {
+    info!("Connecting to redis: {}!", &config.redis.get_url());
     let redis = Arc::new(RedisClient::build_from_config(&config)?);
-    info!("Connected to redis: {}!", &config.redis.get_url());
+
+    info!("Connecting to email: {}!", &config.email.get_addr());
     let email = Arc::new(EmailClient::build_from_config(&config)?);
-    info!("Connected to email: {}!", &config.email.get_addr());
+    
+    info!("Connecting to db: {}!", &config.db.get_url());
     let db = Arc::new(DatabaseClient::build_from_config(&config).await?);
-    info!("Connected to db: {}!", &config.db.get_url());
+    
     let http = HttpClient::build_from_config(&config)?;
     Ok(Self {
       config: Arc::new(config),
