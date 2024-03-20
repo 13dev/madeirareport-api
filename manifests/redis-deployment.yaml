@@ -33,4 +33,4 @@ spec:
             - name: REDIS_PASSWORD
               value: "303fiwe9i2ll3dsi21k1-2k-F"
             - name: REDIS_DB
-              value: "madeirareport"
+              value: ""

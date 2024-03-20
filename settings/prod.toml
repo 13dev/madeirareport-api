@@ -17,7 +17,7 @@ username = "redis-user"
 password = "303fiwe9i2ll3dsi21k1-2k-F"
 host = "redis-service"
 port = 6_379
-database_name = "madeirareport"
+database_name = ""
 
 [email]
 username = "email_user"
