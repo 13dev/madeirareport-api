@@ -1,7 +1,6 @@
 use std::sync::Arc;
-use log::info;
-
 use tokio::sync::Notify;
+use tracing::info;
 
 use crate::client::{
   database::{DatabaseClient, DatabaseClientExt},
@@ -12,7 +11,6 @@ use crate::client::{
 };
 use crate::configure::AppConfig;
 use crate::error::AppResult;
-use crate::service::token::info;
 
 #[derive(Clone)]
 pub struct AppState {

@@ -11,9 +11,11 @@ pub struct RegisterRequest {
   #[dummy(faker = "Username()")]
   #[garde(ascii, length(min = 3, max = 25))]
   pub username: String,
+  
   #[dummy(faker = "SafeEmail()")]
   #[garde(email)]
   pub email: String,
+  
   #[dummy(faker = "Password(8..100)")]
   #[garde(length(min = 8))]
   pub password: String,
