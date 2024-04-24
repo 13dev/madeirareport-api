@@ -1,3 +1,4 @@
+use sea_orm::TransactionTrait;
 use sea_orm_migration::prelude::*;
 
 #[derive(DeriveMigrationName)]
@@ -5,149 +6,42 @@ pub struct Migration;
 
 #[async_trait::async_trait]
 impl MigrationTrait for Migration {
-  async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-    manager
-      .create_table(
-        Table::create()
-          .table(Reports::Table)
-          .if_not_exists()
-          .col(
-            ColumnDef::new(Reports::Id)
-              .integer()
-              .not_null()
-              .primary_key()
-              .auto_increment(),
-          )
-          .col(
-            ColumnDef::new(Reports::CategoryId)
-              .integer()
-              .unsigned()
-              .not_null(),
-          )
-          .col(ColumnDef::new(Reports::Description).text().null())
-          .col(
-            ColumnDef::new(Reports::AttachmentsId)
-              .integer()
-              .unsigned()
-              .not_null(),
-          )
-          .col(ColumnDef::new(Reports::Duration).timestamp().not_null())
-          .col(ColumnDef::new(Reports::LocationLat).double().not_null())
-          .col(ColumnDef::new(Reports::LocationLong).double().not_null())
-          .col(
-            ColumnDef::new(Reports::CreatedAt)
-              .timestamp()
-              .not_null()
-              .default(Expr::current_timestamp()),
-          )
-          .col(
-            ColumnDef::new(Reports::UpdatedAt)
-              .timestamp()
-              .not_null()
-              .default(Expr::current_timestamp()),
-          )
-          .to_owned(),
-      )
-      .await?;
+    async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
+        let db = manager.get_connection();
+        let tx = db.begin().await?;
+        tx.execute_unprepared(
+            r#"
+      CREATE TABLE IF NOT EXISTS reports (
+        id SERIAL PRIMARY KEY,
+        category_id INT NOT NULL,
+        description TEXT,
+        attachments_id INT NOT NULL,
+        duration TIMESTAMP NOT NULL,
+        location_lat DOUBLE PRECISION NOT NULL,
+        location_long DOUBLE PRECISION NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+      );"#).await?;
 
-    manager
-      .create_index(
-        Index::create()
-          .if_not_exists()
-          .name("idx_category_id")
-          .table(Reports::Table)
-          .col(Reports::CategoryId)
-          .to_owned(),
-      )
-      .await?;
-    manager
-      .create_index(
-        Index::create()
-          .if_not_exists()
-          .name("idx_attachments_id")
-          .table(Reports::Table)
-          .col(Reports::AttachmentsId)
-          .to_owned(),
-      )
-      .await?;
-    manager
-      .create_index(
-        Index::create()
-          .if_not_exists()
-          .name("idx_duration")
-          .table(Reports::Table)
-          .col(Reports::Duration)
-          .to_owned(),
-      )
-      .await?;
-    manager
-      .create_index(
-        Index::create()
-          .if_not_exists()
-          .name("idx_location")
-          .table(Reports::Table)
-          .col(Reports::LocationLat)
-          .col(Reports::LocationLong)
-          .to_owned(),
-      )
-      .await?;
-    Ok(())
-  }
+        tx.execute_unprepared(r#" CREATE INDEX IF NOT EXISTS idx_category_id ON reports (category_id);"#).await?;
+        tx.execute_unprepared(r#"CREATE INDEX IF NOT EXISTS idx_attachments_id ON reports (attachments_id);"#).await?;
+        tx.execute_unprepared(r#"CREATE INDEX IF NOT EXISTS idx_duration ON reports (duration);"#).await?;
+        tx.execute_unprepared(r#"CREATE INDEX IF NOT EXISTS idx_location ON reports (location_lat, location_long);"#).await?;
+        tx.commit().await?;
+        Ok(())
+    }
 
-  async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-    // Replace the sample below with your own migration scripts
-    manager
-      .drop_index(
-        Index::drop()
-          .if_exists()
-          .name("idx_category_id")
-          .table(Reports::Table)
-          .to_owned(),
-      )
-      .await?;
-    manager
-      .drop_index(
-        Index::drop()
-          .if_exists()
-          .name("idx_attachments_id")
-          .table(Reports::Table)
-          .to_owned(),
-      )
-      .await?;
-    manager
-      .drop_index(
-        Index::drop()
-          .if_exists()
-          .name("idx_duration")
-          .table(Reports::Table)
-          .to_owned(),
-      )
-      .await?;
-    manager
-      .drop_index(
-        Index::drop()
-          .if_exists()
-          .name("idx_location")
-          .table(Reports::Table)
-          .to_owned(),
-      )
-      .await?;
-    manager
-      .drop_table(Table::drop().table(Reports::Table).to_owned())
-      .await
-  }
-}
+    async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
+        // Replace the sample below with your own migration scripts
 
-#[derive(DeriveIden)]
-enum Reports {
-  Table,
-  Id,
-  CategoryId,
-  Description,
-  LocationLat,
-  LocationLong,
-  CreatedAt,
-  UpdatedAt,
-  AttachmentsId,
-  Duration,
+        let db = manager.get_connection();
+        let tx = db.begin().await?;
+        tx.execute_unprepared(r#"DROP TABLE IF EXISTS reports;"#).await?;
+        tx.execute_unprepared(r#"DROP INDEX IF EXISTS idx_category_id;"#).await?;
+        tx.execute_unprepared(r#"DROP INDEX IF EXISTS idx_attachments_id;"#).await?;
+        tx.execute_unprepared(r#"DROP INDEX IF EXISTS idx_duration;"#).await?;
+        tx.execute_unprepared(r#"DROP INDEX IF EXISTS idx_location;"#).await?;
+        tx.commit().await?;
+        Ok(())
+    }
 }
