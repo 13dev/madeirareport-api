@@ -7,6 +7,7 @@ pub mod admin;
 pub mod server;
 pub mod token;
 pub mod user;
+pub mod report;
 
 pub fn create_router_app(state: AppState) -> Router {
   let router = Router::new()

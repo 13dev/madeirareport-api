@@ -4,7 +4,7 @@ use garde::Validate;
 use serde::{Deserialize, Serialize};
 use strum::Display;
 use utoipa::{IntoParams, ToSchema};
-use uuid::Uuid;
+use uuid::{Timestamp, Uuid};
 
 #[derive(Debug, Deserialize, Serialize, Dummy, Validate, utoipa::ToSchema)]
 pub struct RegisterRequest {
