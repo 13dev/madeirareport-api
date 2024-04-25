@@ -10,7 +10,7 @@ release:
   cargo build --release
 
 watch:
-  RUSTFLAGS="-Awarnings" cargo watch -x 'run --bin app'
+  RUSTFLAGS="-Awarnings" cargo watch -w src -x 'run --bin app'
 
 lint:
   cargo clippy
