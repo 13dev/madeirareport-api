@@ -11,7 +11,6 @@ use uuid::Uuid;
 pub mod request;
 pub mod response;
 pub mod report;
-pub mod report_response;
 
 
 #[derive(Debug, Deserialize, Serialize, Dummy, Validate)]

@@ -9,8 +9,8 @@ docker-logs service='':
 release:
   cargo build --release
 
-build:
-  cargo build
+watch:
+  RUSTFLAGS="-Awarnings" cargo watch -x 'run --bin app'
 
 lint:
   cargo clippy

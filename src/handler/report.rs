@@ -1,12 +1,15 @@
+use std::str::FromStr;
 use axum::extract::{Query, State};
 use axum::Json;
 use garde::Validate;
 use tracing::{info, warn};
+use uuid::Uuid;
 
 use crate::error::AppResult;
 use crate::server::state::AppState;
 use crate::util::claim::UserClaims;
 use crate::{dto::*, service};
+use crate::dto::report::{ReportRegisterRequest, ReportRegisterResponse};
 
 /// Register new request.
 #[utoipa::path(
@@ -22,16 +25,15 @@ use crate::{dto::*, service};
 pub async fn register(
     State(state): State<AppState>,
     Json(req): Json<ReportRegisterRequest>,
-) -> AppResult<Json<ReportRegisterRequest>> {
+) -> AppResult<Json<ReportRegisterResponse>> {
 
     info!("Register new report with request: {req:?}");
 
     req.validate(&())?;
     match service::report::register(state, req).await {
         Ok(user_id) => {
-            info!("Successfully register user: {user_id}");
-            let resp = ReportRegisterRequest { id: user_id };
-            Ok(Json(resp))
+            info!("Successfully register report");
+            Ok(Json(ReportRegisterResponse { id: Uuid::from_str("sa")? }))
         }
         Err(e) => {
             warn!("Unsuccessfully register user: {e:?}");
