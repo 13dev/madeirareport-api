@@ -1,5 +1,6 @@
 use crate::{handler::openapi::ApiDoc, server::state::AppState};
 use axum::Router;
+use tower_http::cors::CorsLayer;
 use utoipa::OpenApi;
 use utoipa_swagger_ui::SwaggerUi;
 
@@ -16,5 +17,5 @@ pub fn create_router_app(state: AppState) -> Router {
   let router = user::add_routers(router);
   let router = token::add_routers(router);
   let router = admin::user::add_routers(router);
-  router.with_state(state)
+  router.with_state(state).layer(CorsLayer::permissive())
 }

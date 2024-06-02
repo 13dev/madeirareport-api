@@ -157,7 +157,7 @@ mod tests {
 
   #[test]
   fn test_invalid_pass_register_request() {
-    let req = RegisterRequest::new("username", "email@test.com", "pass");
+    let req = RegisterRequest::new("username", "email@st.com", "pass");
     assert!(req.validate(&()).is_err());
   }
 

@@ -62,3 +62,4 @@ tokio-tungstenite = "0.21.0"
 wiremock = "0.6.0"
 garde = { version = "0.18.0", features = ["full"] }
 regex = "1.10.2"
+tower-http = { version = "0.5.2" , features = ["cors"]}

@@ -1,4 +1,4 @@
-use axum::routing::{get, post, put};
+use axum::routing::{post, put};
 
 use crate::handler::user;
 use crate::server::state::AppState;

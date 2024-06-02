@@ -1,5 +1,5 @@
 use std::str::FromStr;
-use axum::extract::{Query, State};
+use axum::extract::{State};
 use axum::Json;
 use garde::Validate;
 use tracing::{info, warn};
@@ -7,8 +7,7 @@ use uuid::Uuid;
 
 use crate::error::AppResult;
 use crate::server::state::AppState;
-use crate::util::claim::UserClaims;
-use crate::{dto::*, service};
+use crate::{service};
 use crate::dto::report::{ReportRegisterRequest, ReportRegisterResponse};
 
 /// Register new request.
