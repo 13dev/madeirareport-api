@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=rust:1.74.1-slim-buster
+ARG BASE_IMAGE=rust:1.75.0-slim-buster
 
 FROM $BASE_IMAGE as planner
 LABEL org.opencontainers.image.source = "https://github.com/13dev/madeirareport-api"
