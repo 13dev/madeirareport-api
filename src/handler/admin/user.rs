@@ -9,7 +9,7 @@ use crate::{dto::*, service};
 
 /// Get list of user.
 #[utoipa::path(
-    put,
+    get,
     path = "/api/v1/admin/user/list",
     params(PageQueryParam),
     responses(

@@ -28,7 +28,19 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
+    - host: mailhog.madeirareport.pt
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mailhog-service
+                port:
+                  number: 8025
+
   tls:
     - hosts:
         - api.madeirareport.pt
+        - mailhog.madeirareport.pt
       secretName: api-madeirareport-pt-tls
