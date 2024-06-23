@@ -98,7 +98,7 @@ pub async fn login(
 /// Login2fa user.
 #[utoipa::path(
     post,
-    request_body = LoginRequest,
+    request_body = Login2faRequest,
     path = "/api/v1/user/login2fa",
     responses(
         (status = 200, description = "Success login user", body = [LoginResponse]),

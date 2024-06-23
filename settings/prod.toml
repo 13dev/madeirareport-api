@@ -20,9 +20,9 @@ port = 6_379
 database_name = ""
 
 [email]
-username = "email_user"
-password = "email_pass"
-host = "smtp.gmail.com"
+username = ""
+password = ""
+host = "mailhog-service"
 port = 1_025
 
 [sentry]
