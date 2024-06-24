@@ -13,8 +13,8 @@ database_name = "database_name"
 max_connections = 5
 
 [redis]
-username = "redis-user"
-password = "303fiwe9i2ll3dsi21k1-2k-F"
+username = ""
+password = ""
 host = "redis-service"
 port = 6_379
 database_name = ""

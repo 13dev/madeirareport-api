@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,mailhog-basic-auth@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,default-mailhog-basic-auth@kubernetescrd
   name: mailhog-ingress
 spec:
+  ingressClassName: traefik
   rules:
     - host: mailhog.madeirareport.pt
       http:

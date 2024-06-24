@@ -186,12 +186,7 @@ jobs:
               --docker-password=$GH_TOKEN \
               --docker-email=leo@13dev.pt
             fi
-
             kubectl apply --recursive -f ~/manifests
-            
-            echo "Executing kubectl port-forward..."
-            chmod +x ./manifests/port-forward.sh
-            ./manifests/port-forward.sh &
             
 
 #  test-coverage:
