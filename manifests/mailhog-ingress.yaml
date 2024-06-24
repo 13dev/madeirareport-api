@@ -5,19 +5,9 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd,mailhog-basic-auth@kubernetescrd
-  name: application-ingress
+  name: mailhog-ingress
 spec:
   rules:
-    - host: api.madeirareport.pt
-      http:
-        paths:
-          - backend:
-              service:
-                name: application-service
-                port:
-                  number: 80
-            path: /
-            pathType: Prefix
     - host: mailhog.madeirareport.pt
       http:
         paths:
@@ -31,6 +21,5 @@ spec:
 
   tls:
     - hosts:
-        - api.madeirareport.pt
         - mailhog.madeirareport.pt
       secretName: api-madeirareport-pt-tls
